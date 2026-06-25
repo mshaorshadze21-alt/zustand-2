@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react"
 import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import UseHistory from "./UseHistory";
 
-const Card = ({amount,setCart,setTotalPrice}) => {
+const Card = ({amount,setCart,setTotalPrice, cart}) => {
+
+      useEffect(()=>{
+    console.log(cart)
+  })
+    const {updatePaymentHistory} = UseHistory()
     const Navigate = useNavigate()
 
     const user = {
@@ -15,7 +21,10 @@ const Card = ({amount,setCart,setTotalPrice}) => {
     }
 
 
+
     const [checked, setChecked] = useState("")
+
+  
 
     
     
@@ -34,21 +43,28 @@ const Card = ({amount,setCart,setTotalPrice}) => {
         
 
         if (userName !== name) return
-        console.log(user)
-        console.log(checked)
 
         
         
 
-        console.log(userName, cardNumber)
         if (user.balance < Number(amount)) {
             toast.error("ანგარიშზე არ არის საკმარისი თანხა")
         }else{
             if (name == userName && cardNumber == user.cardNumber && expiryD == user.expiryD && expiryM == user.expiryM && cvc == user.CVC) {
                 
+
                 user.balance = user.balance - Number(amount)
 
                 toast.success("გადახდა შესრულებულია")
+
+                const newPaymentHistory = {
+                    name: userName,
+                    items: cart,
+                    totalPrice: amount
+                }
+
+                updatePaymentHistory(newPaymentHistory)
+
 
                 setCart([])
 

@@ -8,10 +8,19 @@ import flatwhite from "../assets/flatwhite.png"
 import moka from "../assets/moka.webp"
 import matcha from "../assets/matcha.webp"
 import Button from "./Button"
+import UseHistroy from "./UseHistory"
+import { useEffect } from "react"
+
 
 
 const Main = ({cart, setCart, totalPrice, setTotalPrice}) => {
 
+  const {paymentHistory} = UseHistroy()
+
+useEffect(()=>{
+  console.log(paymentHistory)
+
+})
     const PRODUCTS = [
         { id: 1, name: "ესპრესო", price: 4, count:0, image: espresso},
         { id: 2, name: "კაპუჩინო", price: 7, count:0, image: capucchino },

@@ -1,30 +1,42 @@
-import {  useState } from "react";
-import { Routes, Route } from "react-router-dom"
-import PaymentPage from "./components/PaymentPage"
+import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import PaymentPage from "./components/PaymentPage";
 import Main from "./components/Main";
-import PaymentButton from "./components/PaymentButton";
-
+import PaymentHistory from "./components/PaymentHistory";
 
 const App = () => {
-
-  const [cart, setCart] = useState([])
-  const [totalPrice, setTotalPrice] = useState(0)
- 
-
-
-
+  const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   return (
-
     <Routes>
-      <Route path="/" element ={<Main cart = {cart} setCart={setCart} totalPrice= {totalPrice} setTotalPrice={setTotalPrice}/>} />
+      <Route
+        path="/"
+        element={
+          <Main
+            cart={cart}
+            setCart={setCart}
+            totalPrice={totalPrice}
+            setTotalPrice={setTotalPrice}
+          />
+        }
+      />
 
-    <Route path="/payment" element = {<PaymentPage cart={cart} amount = {totalPrice} setCart = {setCart} setTotalPrice={setTotalPrice}/>} /> 
+      <Route
+        path="/payment"
+        element={
+          <PaymentPage
+            cart={cart}
+            amount={totalPrice}
+            setCart={setCart}
+            setTotalPrice={setTotalPrice}
+          />
+        }
+      />
 
-    <PaymentButton/>
-
+      <Route path="/paymentHistory" element={<PaymentHistory />} />
     </Routes>
-  )
-}
+  );
+};
 
-export default App
+export default App;

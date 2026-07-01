@@ -3,7 +3,7 @@
 const ProductsCard = ({product, addProduct, removeProduct}) => {
   return (
     <div className="rounded-2xl bg-mauve-600 shadow-lg shadow-mauve-600">
-            <div className=" rounded-2xl w-70 h-fit flex flex-col justify-between items-center gap-3 p-5 bg-mauve-300">
+            <div className=" rounded-2xl w-full h-fit flex flex-col justify-between items-center gap-3 p-5 bg-mauve-300">
               <div className="w-full h-40 rounded-lg">
                 <img src={product.image} alt="" className=" w-full h-full rounded-lg object-cover"/>
               </div>
